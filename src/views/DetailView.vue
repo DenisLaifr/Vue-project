@@ -76,10 +76,13 @@ import { onBeforeMount, ref, toRefs } from "vue";
 import { format } from "date-fns";
 import CommentComponent from "@/components/CommentComponent.vue";
 
+// The iframeLoaded and iframeError variables are used to track the state of the iframe. If the iframe has loaded, then it is set to true. If there is an error, then it is set to false.
+
 const { currentItem } = toRefs(useItemsStore());
 const iframeLoaded = ref(false);
 const iframeError = ref(false);
 
+// Set the current item to the item with the given ID
 onBeforeMount(() => {
   useItemsStore().setCurrentItem(String(router.currentRoute.value.params.id));
 });

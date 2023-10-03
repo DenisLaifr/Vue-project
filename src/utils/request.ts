@@ -9,9 +9,6 @@ const service = axios.create({
 // Response interceptors
 service.interceptors.response.use(
   (response) => {
-    // if (response.headers && response.headers['x-sentry-trace']) {
-    // useUserStore().setSentryTrace(response.headers['x-sentry-trace'])
-    // }
     return response;
   },
   async (error) => {

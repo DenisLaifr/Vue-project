@@ -66,12 +66,16 @@ export const useItemsStore = defineStore("items", {
       this.activeItems = this.items;
     },
 
+    // This code sets the active items to be displayed by filtering the items array
+    // using the categories array. The active items are then set to the filtered array.
     async setCategories(categories: string[]) {
       this.activeItems = this.items.filter((item) => {
         return categories.includes(item.type);
       });
     },
 
+    // This code sets the current item to the item with the given id
+    // and then retrieves the comments for that item if they exist.
     async setCurrentItem(id: string) {
       const item = await getItemDetail<Item>(id);
       if (item.kids) {

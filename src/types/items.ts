@@ -1,5 +1,3 @@
-// This code parses the JSON returned by the Hacker News API, and returns a list of items from the API. The code parses the JSON as a list of items, and then iterates over each item in the list, and parses the JSON as a dictionary. The code returns a list of items from the API.
-
 export type Item = {
   id: number;
   deleted?: boolean;
