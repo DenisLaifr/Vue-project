@@ -18,17 +18,17 @@
       <div v-if="comment.kids">
         <button
           v-if="!showKids"
-          class="mt-2 text-sm text-gray-500 hover:text-gray-700"
+          class="mt-2 text-sm text-gray-500 hover:text-gray-700 space-x-1"
           @click="showKids = true"
         >
-          {{ comment.kids.length }} more comments
+          {{ comment.kids.length }} {{ $t("comment_component.more_comments") }}
         </button>
         <button
           v-if="showKids"
           class="mt-2 text-sm text-gray-500 hover:text-gray-700"
           @click="showKids = false"
         >
-          Hide comments
+          {{ $t("comment_component.hide_comments") }}
         </button>
         <div v-if="showKids">
           <CommentComponent

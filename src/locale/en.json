@@ -1,1 +1,18 @@
-{}
+{
+    "not_found_view": {
+        "go_to_home_page": "Go to home page",
+        "check_url": "Check URL",
+        "page_not_found": "Page not found"
+    },
+    "list_card": {
+        "comments": "Comments"
+    },
+    "comment_component": {
+        "more_comments": "More comments",
+        "hide_comments": "Hide comments"
+    },
+    "detail_view": {
+        "back": "Back",
+        "iframe_error": " Failed to load the page. Please try again later."
+    }
+}

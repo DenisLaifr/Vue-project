@@ -10,7 +10,7 @@
       <h2 class="text-gray-400">{{ item.by }}</h2>
     </h2>
     <p class="text-gray-500">
-      Comments: {{ item.kids ? item.kids.length : 0 }}
+      {{ $t("list_card.comments") }}: {{ item.kids ? item.kids.length : 0 }}
     </p>
     <p class="text-gray-500">
       {{ format(new Date(item.time * 1000), "MMMM dd - HH:mm") }}

@@ -6,7 +6,7 @@
           <router-link
             to="/"
             class="text-gray-900 font-bold text-xl hover:text-blue-900"
-            >Back</router-link
+            >{{ $t('detail_view.back') }}</router-link
           >
           <div class="w-full text-center">
             <h1 class="text-3xl font-bold text-gray-900">
@@ -47,7 +47,7 @@
               ></iframe>
             </div>
             <div v-else class="text-center text-red-500 font-bold">
-              Failed to load the page. Please try again later.
+              {{ $t("detail_view.iframe_error") }}
             </div>
           </div>
           <div v-if="!iframeLoaded">
