@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { Item } from "@/types/items";
+import { Item, Comment } from "@/types/items";
 import { getItemDetail, getJobsList, getStoriesList } from "@/api/items";
 
 type ItemsStore = {
@@ -7,8 +7,8 @@ type ItemsStore = {
   storiesIds: string[];
   jobsIds: string[];
   items: Item[];
-  activeItems: Item[];
   currentItem: Item | null;
+  activeItems: Item[];
 };
 
 export const useItemsStore = defineStore("items", {
@@ -18,8 +18,8 @@ export const useItemsStore = defineStore("items", {
       storiesIds: [],
       jobsIds: [],
       items: [],
-      activeItems: [],
       currentItem: null,
+      activeItems: [],
     } as ItemsStore;
   },
 
@@ -43,12 +43,12 @@ export const useItemsStore = defineStore("items", {
       const storyDetailsPromises = this.storiesIds
         .slice(0, 50)
         .map((storyId) => {
-          return getItemDetail(storyId);
+          return getItemDetail<Item>(storyId);
         });
 
       // Fetch details for the first 50 jobs
       const jobDetailsPromises = this.jobsIds.slice(0, 50).map((jobId) => {
-        return getItemDetail(jobId);
+        return getItemDetail<Item>(jobId);
       });
 
       // Wait for all the details to be fetched
@@ -70,6 +70,17 @@ export const useItemsStore = defineStore("items", {
       this.activeItems = this.items.filter((item) => {
         return categories.includes(item.type);
       });
+    },
+
+    async setCurrentItem(id: string) {
+      const item = await getItemDetail<Item>(id);
+      if (item.kids) {
+        item.comments = [];
+        for (const kid of item.kids) {
+          item.comments.push(await getItemDetail<Comment>(kid.toString()));
+        }
+      }
+      this.currentItem = item;
     },
   },
 });

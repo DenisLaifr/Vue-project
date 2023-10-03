@@ -19,7 +19,7 @@ export const routes: RouteRecordRaw[] = [
   },
   {
     name: "detail",
-    path: "/detail:id",
+    path: "/detail/:id",
     component: () => import("@/views/DetailView.vue"),
     meta: {
       title: "Detail",

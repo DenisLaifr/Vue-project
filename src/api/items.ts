@@ -23,8 +23,8 @@ export const getJobsList = async (): Promise<AxiosResponse<string[]>> => {
 // This function retrieves the details of a story or a job from the Hacker News API.
 // It returns the details of the story or job.
 // The function takes in the ID of the story or job as an argument.
-export const getItemDetail = async (id: string): Promise<Item> => {
-  const response = await request.get<Item>(
+export const getItemDetail = async <T>(id: string): Promise<T> => {
+  const response = await request.get<T>(
     `https://hacker-news.firebaseio.com/v0/item/${id}.json`
   );
 

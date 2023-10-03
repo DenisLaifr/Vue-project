@@ -10,10 +10,21 @@ export type Item = {
   dead?: boolean;
   parent?: number;
   poll?: number;
-  kids?: number[];
+  kids?: string[];
+  comments?: Comment[];
   url?: string;
   score?: number;
   title?: string;
   parts?: number[];
   descendants?: number;
+};
+
+export type Comment = {
+  by: string;
+  id: string;
+  kids: string[];
+  parent: string;
+  text: string;
+  time: number;
+  type: "comment";
 };
