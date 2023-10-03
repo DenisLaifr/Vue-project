@@ -31,11 +31,13 @@ import Dropdown from "primevue/dropdown";
 import Button from "primevue/button";
 import Toast from "primevue/toast";
 import ProgressSpinner from "primevue/progressspinner";
+import Checkbox from "primevue/checkbox";
 
 app.component("PrimeInputText", InputText);
 app.component("PrimeDropdown", Dropdown);
 app.component("PrimeButton", Button);
 app.component("PrimeToast", Toast);
 app.component("PrimeProgressSpinner", ProgressSpinner);
+app.component("PrimeCheckbox", Checkbox);
 
 app.mount("#app");

@@ -1,9 +1,6 @@
 <template>
-  <div class="w-screen flex flex-col h-screen overflow-hidden">
-    <!-- TOPBAR SPACE -->
-    <div class="w-ull bg-white shadow text-center text-gray-500 py-1">
-      HackerNews - Denis Laifr
-    </div>
+  <div class="w-screen flex flex-row h-screen overflow-hidden">
+    <Sidebar />
     <!-- MAIN CONTENT -->
     <main class="flex-1">
       <RouterView v-slot="{ route, Component }">
@@ -22,4 +19,5 @@
 // this component is for creating a layout for the view
 import { RouterView } from "vue-router";
 import { routeTransitionDuration } from "@/App.vue";
+import Sidebar from "@/layout/sidebar/Sidebar.vue";
 </script>

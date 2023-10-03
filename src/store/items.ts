@@ -7,6 +7,7 @@ type ItemsStore = {
   storiesIds: string[];
   jobsIds: string[];
   items: Item[];
+  activeItems: Item[];
   currentItem: Item | null;
 };
 
@@ -17,6 +18,7 @@ export const useItemsStore = defineStore("items", {
       storiesIds: [],
       jobsIds: [],
       items: [],
+      activeItems: [],
       currentItem: null,
     } as ItemsStore;
   },
@@ -61,6 +63,13 @@ export const useItemsStore = defineStore("items", {
 
       // reorder the items array based on the UnixTime
       this.items.sort((a, b) => b.time - a.time);
+      this.activeItems = this.items;
+    },
+
+    async setCategories(categories: string[]) {
+      this.activeItems = this.items.filter((item) => {
+        return categories.includes(item.type);
+      });
     },
   },
 });
