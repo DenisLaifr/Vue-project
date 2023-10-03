@@ -5,8 +5,8 @@
     >
       HackerNews
     </div>
-    <div class="py-2 text-lg text-white font-semibold">Filters</div>
-    <div>
+    <div v-if="$route.path === '/list'">
+      <div class="py-2 text-lg text-white font-semibold">Filters</div>
       <div
         v-for="category in categories"
         :key="category.name"
@@ -39,14 +39,14 @@ const { initialized } = toRefs(useItemsStore());
 const categoriesValue = ref(["job", "story"]);
 const categories = reactive([
   {
-    name: "Jobs",
-    value: "job",
-    icon: "pi pi-briefcase",
-  },
-  {
     name: "Stories",
     value: "story",
     icon: "pi pi-globe",
+  },
+  {
+    name: "Jobs",
+    value: "job",
+    icon: "pi pi-briefcase",
   },
 ]);
 

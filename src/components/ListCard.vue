@@ -4,7 +4,7 @@
     :class="returnType(item.type)"
     @click="redirectToDetail"
   >
-    <h2 class="text-lg font-medium mb-4 flex">
+    <h2 class="text-lg font-medium mb-3 pb-1 flex border-b border-gray-300">
       {{ item.title }}
       <div class="px-2">-</div>
       <h2 class="text-gray-400">{{ item.by }}</h2>

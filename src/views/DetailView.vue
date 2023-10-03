@@ -2,9 +2,18 @@
   <div>
     <div v-if="currentItem" class="mx-auto px-4 py-2 h-screen overflow-y-auto">
       <div class="mx-auto">
-        <h1 class="text-3xl font-bold text-gray-900">
-          {{ currentItem.title }}
-        </h1>
+        <div class="flex items-center mb-4 border-b border-gray-900">
+          <router-link
+            to="/"
+            class="text-gray-900 font-bold text-xl hover:text-blue-900"
+            >Back</router-link
+          >
+          <div class="w-full text-center">
+            <h1 class="text-3xl font-bold text-gray-900">
+              {{ currentItem.title }}
+            </h1>
+          </div>
+        </div>
         <div class="mt-4 flex items-center">
           <div class="flex-shrink-0">
             <i class="pi pi-user text-2xl text-gray-900"></i>
@@ -17,14 +26,33 @@
                 format(new Date(currentItem.time * 1000), "MMMM dd - HH:mm")
               }}</span>
             </p>
+            <a
+              :href="currentItem.url"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-gray-500 hover:text-blue-800"
+              >{{ currentItem.url }}</a
+            >
           </div>
         </div>
         <div class="mt-6">
-          <iframe
-            class="w-full rounded"
-            height="500"
-            :src="currentItem.url"
-          ></iframe>
+          <div v-show="iframeLoaded" class="border border-gray-200 rounded">
+            <div v-if="!iframeError">
+              <iframe
+                class="w-full rounded"
+                height="500"
+                :src="currentItem.url"
+                @error="iframeError = true"
+                @load="iframeLoaded = true"
+              ></iframe>
+            </div>
+            <div v-else class="text-center text-red-500 font-bold">
+              Failed to load the page. Please try again later.
+            </div>
+          </div>
+          <div v-if="!iframeLoaded">
+            <PrimeProgressSpinner />
+          </div>
         </div>
         <div class="mt-6">
           <CommentComponent
@@ -44,11 +72,13 @@
 <script setup lang="ts">
 import router from "@/router";
 import { useItemsStore } from "@/store/items";
-import { onBeforeMount, toRefs } from "vue";
+import { onBeforeMount, ref, toRefs } from "vue";
 import { format } from "date-fns";
 import CommentComponent from "@/components/CommentComponent.vue";
 
 const { currentItem } = toRefs(useItemsStore());
+const iframeLoaded = ref(false);
+const iframeError = ref(false);
 
 onBeforeMount(() => {
   useItemsStore().setCurrentItem(String(router.currentRoute.value.params.id));
